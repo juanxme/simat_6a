@@ -1,28 +1,32 @@
+#Author: Juan David Parra (jdparrapimiento@gmail.com)
+#Feb 24 2015
 import numpy as np
 import time
 
 start_time = time.time()
+ #inst
+fn_inst = "data/inst.csv"
+inst = np.genfromtxt(fn_inst, delimiter=',', dtype="|S200")
 
-fn_dane_inst_all = "data/dane_inst_all.csv"
-array_dane_inst = np.genfromtxt(fn_dane_inst_all, delimiter=',', dtype=None)
+fn_inst_6a = "data/inst_6a.csv"
+inst_6a = np.genfromtxt(fn_inst_6a, delimiter=',', dtype="|S200")
 
-fn_dane_6a = "data/dane_6a.csv"
-array_6a = np.genfromtxt(fn_dane_6a, delimiter=',', dtype=None).astype('str')
-a=array_6a
-
-print "array_6a: " , array_6a[0]   
-#print "array_dane_inst: " , array_dane_inst
-w=0;
-for i in array_dane_inst:
-    for j in array_6a:
-        #print j,i[0]
-        if j == i[0]:
-            j=i[1]
-            print "entro"
-            break
-    break
+for i in inst:
+    np.place(inst_6a,inst_6a==i[0], i[1])  
     
-print array_6a
+np.savetxt("data/data_inst.csv", inst_6a, delimiter=",",fmt="%s")
+
+#sedes
+fn_sedes = "data/sedes.csv"
+sedes = np.genfromtxt(fn_sedes, delimiter=',', dtype="|S200")
+
+fn_sedes_6a = "data/sedes_6a.csv"
+sedes_6a = np.genfromtxt(fn_sedes_6a, delimiter=',', dtype="|S200")
+
+for j in sedes:
+    np.place(sedes_6a,sedes_6a==j[0], j[1])  
+    
+np.savetxt("data/data_sedes.csv", sedes_6a, delimiter=",",fmt="%s")
  
 t = time.time() - start_time
 print("--- %s seconds ---" % t)
