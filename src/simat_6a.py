@@ -1,4 +1,4 @@
-#Author: Juan David Parra (jdparrapimiento@gmail.com)
+#Author: Juan David Parra
 #Feb 24 2015
 import numpy as np
 import time
